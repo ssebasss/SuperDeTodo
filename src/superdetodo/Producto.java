@@ -66,7 +66,7 @@ public class Producto implements Comparable<Producto>{
     public int compareTo(Producto o) {//la idea es comparar este producto con otro q mandan x parametro
            if(codigo==o.codigo) {
             return 0;
-    } else if(codigo>o.codigo){
+    } else if(codigo>o.codigo ){
         return 1;
     }else{
        return -1;  

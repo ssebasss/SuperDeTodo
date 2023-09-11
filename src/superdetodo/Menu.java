@@ -12,7 +12,7 @@ import java.util.TreeSet;
  */
 public class Menu extends javax.swing.JFrame {
     public static TreeSet<Producto> listaProductos= new TreeSet<>();
-
+ public static int codigoBuscado;
       public Menu() {
         initComponents();
         cargarProductos();
@@ -29,12 +29,12 @@ public class Menu extends javax.swing.JFrame {
 
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuProductos = new javax.swing.JMenu();
+        jMenuItemProductos = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItemPorRubro = new javax.swing.JMenuItem();
+        jMenuItemPorNombre = new javax.swing.JMenuItem();
+        jMenuItemPorPrecio = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,33 +51,43 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 700, Short.MAX_VALUE)
         );
 
-        jMenu3.setText("Administracion");
+        jMenuProductos.setText("Administracion");
+        jMenuProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuProductosActionPerformed(evt);
+            }
+        });
 
-        jMenuItem1.setText("Productos");
-        jMenu3.add(jMenuItem1);
+        jMenuItemProductos.setText("Productos");
+        jMenuItemProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemProductosActionPerformed(evt);
+            }
+        });
+        jMenuProductos.add(jMenuItemProductos);
 
-        jMenuBar2.add(jMenu3);
+        jMenuBar2.add(jMenuProductos);
 
         jMenu4.setText("Consulta");
 
-        jMenuItem2.setText("Por Rubro");
-        jMenu4.add(jMenuItem2);
+        jMenuItemPorRubro.setText("Por Rubro");
+        jMenu4.add(jMenuItemPorRubro);
 
-        jMenuItem3.setText("Por Nombre");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemPorNombre.setText("Por Nombre");
+        jMenuItemPorNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItemPorNombreActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem3);
+        jMenu4.add(jMenuItemPorNombre);
 
-        jMenuItem4.setText("Por Precio");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemPorPrecio.setText("Por Precio");
+        jMenuItemPorPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenuItemPorPrecioActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem4);
+        jMenu4.add(jMenuItemPorPrecio);
 
         jMenuBar2.add(jMenu4);
 
@@ -103,7 +113,7 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItemPorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPorNombreActionPerformed
         // TODO add your handling code here:
         escritorio.removeAll(); //si hay alguna ventana puesta en ese escritorio, la mueva
         escritorio.repaint();
@@ -112,11 +122,26 @@ public class Menu extends javax.swing.JFrame {
         escritorio.add(busquedaPorNombre);
         escritorio.moveToFront(busquedaPorNombre);
 
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMenuItemPorNombreActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuItemPorPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPorPrecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMenuItemPorPrecioActionPerformed
+
+    private void jMenuProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProductosActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenuProductosActionPerformed
+
+    private void jMenuItemProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProductosActionPerformed
+        // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
+        GestionProductos gp = new GestionProductos();
+        gp.setVisible(true);
+        escritorio.add(gp);
+        escritorio.moveToFront(gp);
+    }//GEN-LAST:event_jMenuItemProductosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,13 +180,13 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItemPorNombre;
+    private javax.swing.JMenuItem jMenuItemPorPrecio;
+    private javax.swing.JMenuItem jMenuItemPorRubro;
+    private javax.swing.JMenuItem jMenuItemProductos;
+    private javax.swing.JMenu jMenuProductos;
     // End of variables declaration//GEN-END:variables
 
 private void cargarProductos(){
