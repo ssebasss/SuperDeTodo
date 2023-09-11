@@ -4,6 +4,7 @@
  */
 package superdetodo;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -67,7 +68,24 @@ private DefaultTableModel modelo = new DefaultTableModel() {
 
         jLabelMayorPrecio.setText("Mayor Precio");
 
+        jTextFieldMenorPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldMenorPrecioKeyReleased(evt);
+            }
+        });
+
+        jTextFieldMayorPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldMayorPrecioKeyReleased(evt);
+            }
+        });
+
         jButtonVerTodos.setText("VerTodos");
+        jButtonVerTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerTodosActionPerformed(evt);
+            }
+        });
 
         jTableProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,6 +148,91 @@ private DefaultTableModel modelo = new DefaultTableModel() {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldMenorPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMenorPrecioKeyReleased
+        // TODO add your handling code here:
+         borrarFilas();
+        try {
+            double pMin, pMax;
+            if (jTextFieldMenorPrecio.getText().trim().equals("") || jTextFieldMayorPrecio.getText().trim().equals("")) {
+                pMin = 0;
+                pMax = 0;
+            } else {
+                pMin = Double.parseDouble(jTextFieldMenorPrecio.getText().trim());
+                pMax = Double.parseDouble(jTextFieldMayorPrecio.getText().trim());
+            }
+
+            for (Producto elem : Menu.listaProductos) {
+                if (elem.getPrecio() >= pMin && elem.getPrecio() <= pMax) {
+                    modelo.addRow(new Object[]{
+                        elem.getCodigo(),
+                        elem.getDescripcion(),
+                        elem.getPrecio(),
+                        elem.getStock()
+                    });
+                }
+            }
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(this, "Datos incorrectos: deben ingresar numeros");
+            borrarFilas();
+            jTextFieldMenorPrecio.setText("");
+            jTextFieldMayorPrecio.setText("");
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jTextFieldMenorPrecioKeyReleased
+
+    private void jTextFieldMayorPrecioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMayorPrecioKeyReleased
+        // TODO add your handling code here:
+         borrarFilas();
+        try {
+            double pMin, pMax;
+ 
+            if (jTextFieldMenorPrecio.getText().trim().equals("") || jTextFieldMayorPrecio.getText().trim().equals("")) {
+                pMin = 0;
+                pMax = 0;
+            } else {
+                pMin = Double.parseDouble(jTextFieldMenorPrecio.getText().trim());
+                pMax = Double.parseDouble(jTextFieldMayorPrecio.getText().trim());
+            }
+
+            for (Producto elem : Menu.listaProductos) {
+                if (elem.getPrecio() >= pMin && elem.getPrecio() <= pMax) {
+         
+                    modelo.addRow(new Object[]{
+                        elem.getCodigo(),
+                        elem.getDescripcion(),
+                        elem.getPrecio(),
+                        elem.getStock()
+                    });
+                }
+            }
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(this, "Ingresar numeros");
+            borrarFilas();
+            jTextFieldMenorPrecio.setText("");
+            jTextFieldMayorPrecio.setText("");
+        }
+        
+        
+        
+    }//GEN-LAST:event_jTextFieldMayorPrecioKeyReleased
+
+    private void jButtonVerTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerTodosActionPerformed
+        // TODO add your handling code here:
+        borrarFilas();
+        for (Producto elem : Menu.listaProductos) {
+            //lo agrego en una fila nueva de la tabla
+            modelo.addRow(new Object[]{
+                elem.getCodigo(),
+                elem.getDescripcion(),
+                elem.getPrecio(),
+                elem.getStock()
+            });
+        }  
+    }//GEN-LAST:event_jButtonVerTodosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

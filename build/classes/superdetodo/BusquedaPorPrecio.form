@@ -117,13 +117,22 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldMenorPrecio">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldMenorPrecioKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldMayorPrecio">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldMayorPrecioKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonVerTodos">
       <Properties>
         <Property name="text" type="java.lang.String" value="VerTodos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVerTodosActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
